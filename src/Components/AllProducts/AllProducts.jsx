@@ -5,7 +5,7 @@ import SingleProduct from './SingleProduct/SingleProduct';
 const AllProducts = () => {
     const products = useLoaderData()
     return (
-        <div className='grid grid-cols-4 mt-12'>
+        <div className='grid grid-cols-4 mt-24 bg-white'>
             <div className=' col-span-1'></div>
             <div className='col-span-3 flex flex-wrap gap-5'>
                 {
