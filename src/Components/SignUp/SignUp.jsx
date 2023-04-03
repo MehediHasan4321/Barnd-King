@@ -22,7 +22,7 @@ const SignUp = () => {
                 </div>
                 <div className='flex justify-between gap-2 items-center w-full pl-2'>
                     <h2 className='text-lg font-semibold'>Confrum :</h2>
-                    <input className='w-3/4 px-4 py-2 bg-purple-400 text-white text-lg font-semibold outline-none rounded placeholder:text-white' autoFocus type="text" placeholder='Reright Your Password' name="" id="" />
+                    <input className='w-3/4 px-4 py-2 bg-purple-400 text-white text-lg font-semibold outline-none rounded placeholder:text-white' autoFocus type="password" placeholder='Reright Your Password' name="" id="" />
                 </div>
                 <input type="checkbox" name="" id="" /> Accepts All Termes And Conditions
                 <button className='bg-purple-400 w-full py-2 text-white font-semibold text-lg rounded-md'>Sign Up</button>

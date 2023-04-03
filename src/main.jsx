@@ -21,7 +21,8 @@ const router = createBrowserRouter([
       },
       {
         path:'allProduct',
-        element: <AllProduct/>
+        element: <AllProduct/>,
+        loader: ()=>fetch('product.json')
       },
       {
         path:'login',
