@@ -2,7 +2,7 @@ import React from 'react';
 
 const SignUp = () => {
     return (
-        <div className='container mx-auto'>
+        <div className='container mx-auto mt-32'>
             <div className='w-4/12 p-4 h-auto shadow-md mx-auto mt-12 space-y-4'>
                 <div className='flex justify-between gap-2 items-center w-full pl-2'>
                     <h2 className='text-lg font-semibold'>First Name :</h2>

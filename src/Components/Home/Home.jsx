@@ -1,6 +1,7 @@
 import React from 'react';
 import Single from './SingleProductSample/Single';
-
+import images from './ImageSlider/Images';
+import ImageSlider from './ImageSlider/ImageSlider';
 const Home = () => {
     const productSample = [
         {
@@ -55,7 +56,7 @@ const Home = () => {
     return (
         <div className='container mx-auto mt-20'>
             <div className=' bg-gray-200 h-[40vh]'>
-
+                <ImageSlider images={images}/>
             </div>
             <div className='bg-gray-200 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4'>
                 {
