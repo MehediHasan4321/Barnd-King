@@ -22,7 +22,7 @@ const Header = () => {
                 <h1 className='text-4xl font-semibold'>Brand <span>King</span></h1>
                 <div className='flex gap-6 text-lg font-semibold'>
                     <Link to={'/home'}>Home</Link>
-                    <Link to={'/allProduct'} >All Product</Link>
+                    <Link to={'/allProduct'} >Products</Link>
                     <Link to={'/contactUs'}>Contact</Link>
                     <Link to={'/about'}>About</Link>
                     <Link to={'/logIn'}>Log In</Link>
