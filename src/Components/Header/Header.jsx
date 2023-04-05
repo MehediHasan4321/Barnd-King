@@ -26,7 +26,7 @@ const Header = () => {
                     <Link to={'/contactUs'}>Contact</Link>
                     <Link to={'/about'}>About</Link>
                     <Link to={'/logIn'}>Log In</Link>
-                    <Link to={'/allCarts'}> <ShoppingBagIcon className='w-8 h-8' /><span className=' absolute top-7 ml-9'>$00</span></Link>
+                    <Link to={'/allCarts'}> <ShoppingBagIcon className='w-8 h-8' /><span className=' absolute top-7 ml-9'></span></Link>
                 </div>
             </nav>
         </header>
