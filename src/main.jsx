@@ -10,11 +10,16 @@ import SignUp from './Components/SignUp/SignUp'
 import Contact from './Components/ContactUs/ContactUs'
 import About from './Components/About/About'
 import Carts from './Components/Carts/Carts'
+import lodedData from './CustomLoder/CustomLoder'
 const router = createBrowserRouter([
   {
     path:'/',
     element: <App/>,
     children:[
+      {
+        path:'/',
+        element:<Home/>
+      },
       {
         path:'home',
         element:<Home/>
@@ -42,7 +47,8 @@ const router = createBrowserRouter([
       },
       {
         path : 'allCarts',
-        element: <Carts/>
+        element: <Carts/>,
+        loader:lodedData
       }
     ]
   }

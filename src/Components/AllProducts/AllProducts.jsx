@@ -4,6 +4,7 @@ import SingleProduct from './SingleProduct/SingleProduct';
 
 const AllProducts = () => {
     const products = useLoaderData()
+    const [productId,setProductId] = useState([])
     const [showProduct,setShowProduct]= useState(products)
     const MenSneaker = products.filter(pro=>pro.category === "Men's Sneaker")
     const MenPants = products.filter(pro=>pro.category==="Men's Pants");
@@ -17,7 +18,11 @@ const AllProducts = () => {
     const showProductHadler =(product)=>{
         setShowProduct(product)
     }
-
+    const handleProductCart =(id)=>{
+        const newProdcutId = [...productId,id]
+        setProductId(newProdcutId)
+        localStorage.setItem('orderedCart',JSON.stringify(productId))
+    }
 
     return (
         <div className=' grid grid-cols-4 mt-24 gap-4 bg-white'>
@@ -54,7 +59,7 @@ const AllProducts = () => {
             </div>
             <div className='col-span-3 flex flex-wrap gap-5'>
                 {
-                    showProduct.map(product => <SingleProduct key={product.id} product={product} />)
+                    showProduct.map(product => <SingleProduct key={product.id} product={product} handleProductCart={handleProductCart}/>)
                 }
             </div>
         </div>

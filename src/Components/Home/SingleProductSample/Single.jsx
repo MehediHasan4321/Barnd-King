@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Single = ({sample}) => {
-    console.log(sample)
     return (
         <div className='w-[350px] bg-white p-4 relative'>
             <h1 className='text-xl font-semibold mb-2'>{sample.title}</h1>

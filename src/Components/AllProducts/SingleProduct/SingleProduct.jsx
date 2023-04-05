@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const SingleProduct = ({ product }) => {
+const SingleProduct = ({ product,handleProductCart }) => {
     const [start, setStart] = useState(
         <span className='text-purple-400 text-lg space-x-1'>
             <i class="fa-regular fa-star"></i>
@@ -57,7 +57,7 @@ const SingleProduct = ({ product }) => {
                         {start}
                     </div>
                 </div>
-                <button className='w-full py-2 text-white bg-purple-400 text-center text-lg font-semibold rounded-md'>Add To Cart</button>
+                <button onClick={()=>handleProductCart(id)} className='w-full py-2 text-white bg-purple-400 text-center text-lg font-semibold rounded-md'>Add To Cart</button>
             </div>
         </div>
     );
