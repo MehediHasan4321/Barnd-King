@@ -10,7 +10,8 @@ import SignUp from './Components/SignUp/SignUp'
 import Contact from './Components/ContactUs/ContactUs'
 import About from './Components/About/About'
 import Carts from './Components/Carts/Carts'
-import { lodedData } from './CustomLoder/CustomLoder'
+import { lodaedOrderCart, lodedProductDetails,  } from './CustomLoder/CustomLoder'
+import ProductDetails from './Components/AllProducts/ProductDetails/ProductDetails'
 const router = createBrowserRouter([
   {
     path:'/',
@@ -48,7 +49,12 @@ const router = createBrowserRouter([
       {
         path : 'allCarts',
         element: <Carts/>,
-        loader : lodedData
+        loader : lodaedOrderCart
+      },
+      {
+        path:'productDetails',
+        element:<ProductDetails/>,
+        loader: lodedProductDetails
       }
     ]
   }

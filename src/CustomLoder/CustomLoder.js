@@ -1,4 +1,4 @@
-const lodedData = async () => {
+const lodaedOrderCart = async () => {
     const lodateCart = await fetch('product.json')
     const orderedCart = await lodateCart.json()
     const saveOrderId = JSON.parse(localStorage.getItem('orderedCart'))
@@ -9,6 +9,15 @@ const lodedData = async () => {
     }
     return orderCart
 }
+
+const lodedProductDetails = async ()=>{
+    const lodedDetails = await fetch('product.json');
+    const productDetails = await lodedDetails.json()
+    const saveProduct = localStorage.getItem('productDetailId');
+    const getProduct = productDetails.find(pro=>pro.id === saveProduct)
+    return getProduct
+}
+
 const getOrderCart= ()=>{
     let order = {}
     const storedOrder = localStorage.getItem('orderedCart')
@@ -18,4 +27,4 @@ const getOrderCart= ()=>{
 
     return order
 }
-export { lodedData , getOrderCart}
+export { lodaedOrderCart , getOrderCart ,lodedProductDetails}

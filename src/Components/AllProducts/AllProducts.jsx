@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import SingleProduct from './SingleProduct/SingleProduct';
-import { getOrderCart } from '../../CustomLoder/CustomLoder';
 
 const AllProducts = () => {
     const products = useLoaderData()
@@ -18,16 +17,10 @@ const AllProducts = () => {
     const showProductHadler = (product) => {
         setShowProduct(product)
     }
-    const handleProductCart = (id) => {
-        let orderCart = getOrderCart()
-        const quantity = orderCart[id]
-        if (!quantity) {
-            orderCart[id] = 1
-        }
-     
-        localStorage.setItem('orderedCart', JSON.stringify(orderCart))
+    
+    const productDetails=id=>{
+        localStorage.setItem('productDetailId',id)
     }
-
     return (
         <div className=' grid grid-cols-4 mt-24 gap-4 bg-white'>
             <div className=' col-span-1 px-4 bg-slate-200 w-[300px] ml-auto h-screen sticky top-20 space-y-4'>
@@ -63,7 +56,7 @@ const AllProducts = () => {
             </div>
             <div className='col-span-3 flex flex-wrap gap-5'>
                 {
-                    showProduct.map(product => <SingleProduct key={product.id} product={product} handleProductCart={handleProductCart} />)
+                    showProduct.map(product => <SingleProduct key={product.id} product={product} productDetails={productDetails}/>)
                 }
             </div>
         </div>
