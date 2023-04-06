@@ -2,7 +2,7 @@ import { MinusIcon, PlusIcon, TrashIcon } from '@heroicons/react/24/solid';
 import React, { useState } from 'react';
 import { getOrderCart } from '../../../CustomLoder/CustomLoder';
 
-const Order = ({ order }) => {
+const Order = ({ order,deleteItem }) => {
     const [catQuantity, setCartQuantity] = useState(1)
     const { name, img, id, price, quantity } = order
 
@@ -25,7 +25,7 @@ const Order = ({ order }) => {
             setCartQuantity(catQuantity - 1)
         }
     }
-
+    
     return (
         <div className='w-2/3 border-2 my-8 rounded-md flex justify-between items-center relative'>
             <div className=' flex gap-4 items-center'>
@@ -59,7 +59,7 @@ const Order = ({ order }) => {
                 </div>
                 <hr className='border-1' />
             </div>
-            <TrashIcon className='w-5 h-5 absolute p-1 -top-4 -right-4 bg-purple-500 text-white rounded-full' />
+            <TrashIcon onClick={()=>deleteItem(id)} className='w-5 h-5 absolute p-1 -top-4 -right-4 bg-purple-500 text-white rounded-full' />
         </div>
     );
 };
