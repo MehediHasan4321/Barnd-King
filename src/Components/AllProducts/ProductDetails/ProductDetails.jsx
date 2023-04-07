@@ -61,9 +61,9 @@ const ProductDetails = () => {
     }
 
     return (
-        <div className='container mx-auto mt-24 gird grid-cols-4'>
-            <div className='col-span-3 flex gap-5'>
-                <div>
+        <div className='container mx-auto mt-24'>
+            <div className='flex  gap-5'>
+                <div className=' col-span-1' >
                     <img className=' h-96' src={img} alt="Product Images" />
                     <div className='flex gap-4 mt-12'>
                         <div className='w-20 h-20 border-2 '>
@@ -77,7 +77,7 @@ const ProductDetails = () => {
                         </div>
                     </div>
                 </div>
-                <div className='flex flex-col justify-around ml-4'>
+                <div className='flex flex-col space-y-6 ml-4'>
                     <div className=' space-y-3'>
                         <h1 className='text-3xl font-semibold'>{name}</h1>
                         <p className='text-lg'>{ratingStar} || {ratingsCount} Ratings Counts</p>
