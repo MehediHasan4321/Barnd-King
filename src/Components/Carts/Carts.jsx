@@ -74,13 +74,13 @@ const Carts = () => {
 
     return (
         <PriceContext.Provider value={[catQuantity, setCartQuantity]}>
-            <div className=' h-auto container mx-auto mt-32 grid grid-cols-4 gap-6'>
+            <div className='container mx-auto mt-32 grid grid-cols-4 gap-6 h-full'>
                 <div className='col-span-3'>
                     {
                         cart.map(order => <Order key={order.id} order={order} deleteItem={deleteItem} minusQuantity={minusQuantity} pluseQuantity={pluseQuantity} />)
                     }
                 </div>
-                <div className='col-span-1 border-2 relative'>
+                <div className=' col-span-1 border-2 relative min-h-[60vh]'>
                     <h1 className='text-2xl font-semibold p-6'>Total Order : {cart.length < 10 ? '0' + cart.length : cart.length}</h1>
                     <div>
                         {
@@ -88,7 +88,7 @@ const Carts = () => {
 
                         }
                     </div>
-                    <div className='absolute bottom-0 w-full'>
+                    <div className='absolute bottom-0 w-full '>
                         <div className='px-6 my-4 flex justify-between items-center text-xl'>
                             <p>Delevary Charges :</p>
                             <p>${delevary}</p>
