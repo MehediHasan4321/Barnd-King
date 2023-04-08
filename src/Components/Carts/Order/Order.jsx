@@ -4,10 +4,42 @@ import { getOrderCart } from '../../../CustomLoder/CustomLoder';
 import { PriceContext } from '../Carts';
 
 
-const Order = ({ order, deleteItem,minusQuantity,pluseQuantity }) => {
-    const [catQuantity, setCartQuantity] = useContext(PriceContext)
-    const { name, img, id, price, quantity } = order
+const Order = ({ order, deleteItem }) => {
+    let initial = 1
+    const [cartQuantity, setCartQuantity] = useState(initial)
+    const { name, img, id, price, } = order
    
+
+
+
+    const pluseQuantity = (id) => {
+        const orderCart = getOrderCart()
+        if (cartQuantity < 5) {
+            setCartQuantity(initial + 1)
+            const orderQuantity = orderCart[id];
+            if (orderQuantity) {
+                const newQuantity = orderQuantity + 1;
+                orderCart[id] = newQuantity
+            }
+
+        }
+
+        localStorage.setItem('orderedCart', JSON.stringify(orderCart))
+    }
+    const orderQuantity = getOrderCart()
+    initial = orderQuantity[id]
+    const minusQuantity = (id) => {
+        const orderCart = getOrderCart()
+        if (cartQuantity > 1) {
+            setCartQuantity(initial - 1)
+            const orderQuantity = orderCart[id];
+            if (orderQuantity) {
+                const newQuantity = orderQuantity - 1;
+                orderCart[id] = newQuantity
+            }
+        }
+        localStorage.setItem('orderedCart', JSON.stringify(orderCart))
+    }
 
     return (
         <div>
@@ -20,7 +52,7 @@ const Order = ({ order, deleteItem,minusQuantity,pluseQuantity }) => {
                         <div>
                             <p className='text-lg font-semibold flex items-center gap-2'>Quantity :
                                 <button onClick={() => minusQuantity(id)}> <MinusIcon className='w-5 h-5 bg-purple-300' /></button>
-                                <span>{catQuantity}</span>
+                                <span>{initial}</span>
                                 <button onClick={() => pluseQuantity(id)}><PlusIcon className='w-5 h-5 bg-purple-300' /> </button>
                             </p>
                         </div>
@@ -33,12 +65,12 @@ const Order = ({ order, deleteItem,minusQuantity,pluseQuantity }) => {
                     </div>
                     <hr className='border-1' />
                     <div className='flex justify-between items-center gap-6'>
-                        <p>Quantity :</p><p>{catQuantity}</p>
+                        <p>Quantity :</p><p>{initial}</p>
 
                     </div>
                     <hr className='border-1' />
                     <div className='flex justify-between items-center gap-6'>
-                        <p>Total :</p><p>${price * catQuantity}</p>
+                        <p>Total :</p><p>${price * initial}</p>
 
                     </div>
                     <hr className='border-1' />
@@ -47,7 +79,7 @@ const Order = ({ order, deleteItem,minusQuantity,pluseQuantity }) => {
             </div>
 
             {/* check out section  */}
-            
+
         </div>
     );
 };

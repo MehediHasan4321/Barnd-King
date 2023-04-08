@@ -27,4 +27,9 @@ const getOrderCart= ()=>{
 
     return order
 }
-export { lodaedOrderCart , getOrderCart ,lodedProductDetails}
+const getInnerTextById=id=>{
+    const strTxt = document.getElementById(id).innerText;
+    const numTex = parseFloat(strTxt)
+    return numTex
+}
+export { lodaedOrderCart , getOrderCart ,lodedProductDetails,getInnerTextById}
