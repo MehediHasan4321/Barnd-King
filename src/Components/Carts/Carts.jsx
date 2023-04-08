@@ -64,25 +64,25 @@ const Carts = () => {
                         <hr className='border-1 mx-2' />
                         <div className='px-6 my-4 flex justify-between items-center text-xl'>
                             <p>Delevary Charges :</p>
-                            <p>${delevary}</p>
+                            <p>${delevary.toFixed(2)}</p>
                         </div>
                         <div className='px-6 my-4 flex justify-between items-center text-xl'>
                             <p>Total Price :</p>
-                            <p>${price}</p>
+                            <p>${price.toFixed(2)}</p>
                         </div>
                         <hr className='border-1 mx-2' />
                         <div className='px-6 my-4 flex justify-between items-center text-xl'>
                             <p>Sub Total : </p>
-                            <p>${subTotal}</p>
+                            <p>${subTotal.toFixed(2)}</p>
                         </div>
                         <div className='px-6 my-4 flex justify-between items-center text-xl'>
                             <p>Tax (15%):</p>
-                            <p>${tax}</p>
+                            <p>${tax.toFixed(2)}</p>
                         </div>
                         <hr className='border-1 mx-2' />
                         <div className='px-6 my-4 flex justify-between items-center text-xl'>
                             <p>Payable Amount :</p>
-                            <p>${payable}</p>
+                            <p>${payable.toFixed(2)}</p>
                         </div>
                         <button className=' py-2 text-center bg-purple-400 hover:bg-purple-500 text-white text-lg font-semibold w-full'>Confrome Order</button>
                     </div>
