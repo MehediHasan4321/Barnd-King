@@ -1,17 +1,18 @@
 import { MinusIcon, PlusIcon, TrashIcon } from '@heroicons/react/24/solid';
 import React, { useContext, useEffect, useState } from 'react';
 import { getOrderCart } from '../../../CustomLoder/CustomLoder';
-import { PriceContext } from '../Carts';
+
 
 
 const Order = ({ order, deleteItem }) => {
     let initial = 1
     const [cartQuantity, setCartQuantity] = useState(initial)
     const { name, img, id, price, } = order
-   
+    // get quantity from localStorage and set it ot as a cartQuantity's initial value
+    const orderQuantity = getOrderCart()
+    initial = orderQuantity[id]
 
-
-
+    // This function incress the value of cart quantity and also incress localStorage too...
     const pluseQuantity = (id) => {
         const orderCart = getOrderCart()
         if (cartQuantity < 5) {
@@ -26,8 +27,7 @@ const Order = ({ order, deleteItem }) => {
 
         localStorage.setItem('orderedCart', JSON.stringify(orderCart))
     }
-    const orderQuantity = getOrderCart()
-    initial = orderQuantity[id]
+    // This function decress the value of cart quantity and also decress localStorage too...
     const minusQuantity = (id) => {
         const orderCart = getOrderCart()
         if (cartQuantity > 1) {

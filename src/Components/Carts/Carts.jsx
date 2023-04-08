@@ -31,6 +31,7 @@ const Carts = () => {
         setPayable(payabletotal)
     }, [cart, orderedCart, price, subTotal, tax, payable])
 
+    // This function remove item from localStorage by takaing on id
     const removeDb = id => {
         const saveCart = getOrderCart()
         if (id in saveCart) {
@@ -38,6 +39,8 @@ const Carts = () => {
             localStorage.setItem('orderedCart', JSON.stringify(saveCart))
         }
     }
+    // this function help us to filter cart from all cart also it can remove item by taking an id....
+    
     const deleteItem = id => {
         const filterCart = (cart.filter(order => order.id !== id))
         setCart(filterCart)
