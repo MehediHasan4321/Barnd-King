@@ -50,7 +50,7 @@ const SingleProduct = ({ product, handleProductCart,productDetails }) => {
     return (
         <Link onClick={()=>productDetails(id)} to={'/productDetails'}>
             <div className='w-96 h-[550px] border-2 rounded-md relative'>
-                <img src={img} alt="single product images" />
+                <img className='w-full h-[350px] object-cover' src={img} alt="single product images" />
                 <div className=' absolute bottom-0 right-0 left-0'>
                     <div className='p-4'>
                         <h1 className='text-xl'>{name}</h1>

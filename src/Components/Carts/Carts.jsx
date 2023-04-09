@@ -55,7 +55,7 @@ const Carts = () => {
                         cart.map(order => <Order key={order.id} order={order} deleteItem={deleteItem} />)
                     }
                 </div>
-                <div className=' col-span-1 border-2 relative min-h-[60vh]'>
+                <div className=' col-span-1 border-2 relative min-h-[65vh]'>
                     <h1 className='text-2xl font-semibold p-6'>Total Order : {cart.length < 10 ? '0' + cart.length : cart.length}</h1>
                     <div>
                         {

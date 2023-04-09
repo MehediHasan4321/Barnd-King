@@ -8,19 +8,22 @@ const Home = () => {
             id: 1,
             title: 'Soft dresses',
             imgUrl: 'https://images-na.ssl-images-amazon.com/images/G/01/PLF/Daily_Ritual/2020/SPRING-DRIVERS/DAILY-RITUAL-COTTON-PUFF-SLEEVE_DT_CC_379x304_1x._SY304_CB410865121_.jpg',
-            tag:"Shop Daily Ritual's dresses"
+            tag:"Shop Daily Ritual's dresses",
+            url:'dresse'
         },
         {
             id: 2,
             title: 'Deals on Top Brands',
             imgUrl: 'https://images-na.ssl-images-amazon.com/images/G/01/Top_Brands/Holiday2021/10_17/10_17_BeautyFashion_379x304._SY304_CB638939725_.jpg',
-            tag:"See More"
+            tag:"See More",
+            url:"topBrand"
         },
         {
             id: 3,
             title: "Customers' most-loved",
             imgUrl: "https://m.media-amazon.com/images/I/61IX7x2YwZL._AC_UY218_.jpg" ,
-            tag:"Discover items with 4+ starts"
+            tag:"Discover items with 4+ starts",
+            url:'smartWatch'
         },
         {
             id: 4,

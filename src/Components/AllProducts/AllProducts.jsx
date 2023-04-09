@@ -12,7 +12,7 @@ const AllProducts = () => {
     const Earphones = products.filter(pro => pro.category === "Earphones");
     const Bottle = products.filter(pro => pro.category === "Bottle")
     const MenBoots = products.filter(pro => pro.category === "Men's Boot")
-
+    const Watch = products.filter(pro=>pro.category === 'smart-watch')
 
     const showProductHadler = (product) => {
         setShowProduct(product)
@@ -52,6 +52,10 @@ const AllProducts = () => {
                 <div onClick={() => showProductHadler(Bottle)} className='flex justify-between items-center bg-purple-400 px-4 py-2 rounded-md text-lg text-white cursor-pointer'>
                     <li>Bottle</li>
                     <p>({Bottle.length})</p>
+                </div>
+                <div onClick={() => showProductHadler(Watch)} className='flex justify-between items-center bg-purple-400 px-4 py-2 rounded-md text-lg text-white cursor-pointer'>
+                    <li>Watch</li>
+                    <p>({Watch.length})</p>
                 </div>
             </div>
             <div className='col-span-3 flex flex-wrap gap-5'>

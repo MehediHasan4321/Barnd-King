@@ -5,7 +5,8 @@ import { getOrderCart } from '../../../CustomLoder/CustomLoder';
 
 const ProductDetails = () => {
     const product = useLoaderData()
-    const { name, id, img, price, ratings, ratingsCount, seller, stock, shipping } = product
+    const { name, id, img, price, ratings, ratingsCount, seller, stock, shipping, variantImg } = product;
+    const [proImg,setProImg] = useState(img)
     const [ratingStar, setRatingStar] = useState(
         <span className='text-purple-400 text-lg space-x-1'>
             <i class="fa-regular fa-star"></i>
@@ -60,49 +61,50 @@ const ProductDetails = () => {
         localStorage.setItem('orderedCart', JSON.stringify(orderCart))
     }
 
+    const setProductImg= img=>{
+        setProImg(img)
+    }
     return (
-        <div className='container mx-auto mt-24'>
-            <div className='flex  gap-5'>
-                <div className=' col-span-1' >
-                    <img className=' h-96' src={img} alt="Product Images" />
-                    <div className='flex gap-4 mt-12'>
-                        <div className='w-20 h-20 border-2 '>
-                            <img src={img} alt="" />
+        <div className='container mx-auto mt-32'>
+            <div className='grid grid-cols-6  gap-5'>
+                <div className=' col-span-2' >
+                    <img className='w-[400px] h-[450px] object-cover' src={proImg} alt="Product Images" />
+                    <div className='flex gap-4 mt-12 justify-center w-full'>
+                        {
+                            variantImg?.map(vImg => <div className='w-20 h-20 border-2 '>
+                                <img onClick={()=>setProductImg(vImg)} className='w-full h-full object-cover' src={vImg ? vImg : img} alt="Another imgs" />
+                            </div>)
+                        }
+                    </div>
+                </div>
+                <div className=' col-span-2'>
+                    <div className='flex flex-col space-y-6 ml-4'>
+                        <div className=' space-y-3'>
+                            <h1 className='text-3xl font-semibold'>{name}</h1>
+                            <p className='text-lg'>{ratingStar} || {ratingsCount} Ratings Counts</p>
+                            <p className='text-lg'>Brand : {seller ? seller : 'No Brand'}</p>
+                            <h1 className='text-3xl'>Price : ${price}</h1>
                         </div>
-                        <div className='w-20 h-20 border-2 '>
-                            <img src={img} alt="" />
+                        <div className='flex gap-4'>
+                            <p className='mb-2'>Color Family:</p>
+                            <div className='w-16 h-16 border-2 border-gray-300 hover:border-red-600'>
+                                <img src={img ? img : 'not found'} alt="Color Variant images" />
+                            </div>
+                            <div className='w-16 h-16 border-2 border-gray-300 hover:border-red-600' >
+                                <img src={img ? img : 'not found'} alt="Color Variant images" />
+                            </div>
+                            <div className='w-16 h-16 border-2 border-gray-300 hover:border-red-600'>
+                                <img src={img ? img : 'not found'} alt="Color Variant images" />
+                            </div>
                         </div>
-                        <div className='w-20 h-20 border-2 '>
-                            <img src={img} alt="" />
+                        <div>
+                            <Link to='/allCarts'><button onClick={() => handleProductCart(id)} className='mx-2 w-48 bg-amber-400 px-4 py-2 text-center text-white text-lg'>Buy Now</button></Link>
+
+                            <button onClick={() => handleProductCart(id)} className='bg-amber-400 px-4 py-2 text-center w-48 text-white text-lg'>Add To cart</button>
                         </div>
                     </div>
                 </div>
-                <div className='flex flex-col space-y-6 ml-4'>
-                    <div className=' space-y-3'>
-                        <h1 className='text-3xl font-semibold'>{name}</h1>
-                        <p className='text-lg'>{ratingStar} || {ratingsCount} Ratings Counts</p>
-                        <p className='text-lg'>Brand : {seller ? seller : 'No Brand'}</p>
-                        <h1 className='text-3xl'>Price : ${price}</h1>
-                    </div>
-                    <div className='flex gap-4'>
-                        <p className='mb-2'>Color Family:</p>
-                        <div className='w-16 h-16 border-2 border-gray-300 hover:border-red-600'>
-                            <img src={img ? img : 'not found'} alt="Color Variant images" />
-                        </div>
-                        <div className='w-16 h-16 border-2 border-gray-300 hover:border-red-600' >
-                            <img src={img ? img : 'not found'} alt="Color Variant images" />
-                        </div>
-                        <div className='w-16 h-16 border-2 border-gray-300 hover:border-red-600'>
-                            <img src={img ? img : 'not found'} alt="Color Variant images" />
-                        </div>
-                    </div>
-                    <div>
-                    <Link to='/allCarts'><button onClick={() => handleProductCart(id)} className='mx-2 w-48 bg-amber-400 px-4 py-2 text-center text-white text-lg'>Buy Now</button></Link>
-                    
-                        <button onClick={() => handleProductCart(id)} className='bg-amber-400 px-4 py-2 text-center w-48 text-white text-lg'>Add To cart</button>
-                    </div>
-                </div>
-                <div className=' w-1/3 mx-auto bg-gray-100'>
+                <div className=' col-span-2 mx-auto bg-gray-100'>
                     <div className='p-4 sapce-y-3'>
                         <div className='flex justify-between'>
                             <p>Delivery</p>

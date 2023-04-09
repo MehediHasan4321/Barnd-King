@@ -9,6 +9,11 @@ const lodaedOrderCart = async () => {
     }
     return orderCart
 }
+const lodedSmartWatch = async()=>{
+    const lodedWatch = await fetch('smartWatch.json');
+    const allSmartWatch = lodedWatch.json()
+    return allSmartWatch
+}
 
 const lodedProductDetails = async ()=>{
     const lodedDetails = await fetch('product.json');
@@ -24,12 +29,12 @@ const getOrderCart= ()=>{
     if(storedOrder){
        order = JSON.parse(storedOrder)
     }
-
     return order
 }
+
 const getInnerTextById=id=>{
     const strTxt = document.getElementById(id).innerText;
     const numTex = parseFloat(strTxt)
     return numTex
 }
-export { lodaedOrderCart , getOrderCart ,lodedProductDetails,getInnerTextById}
+export { lodaedOrderCart , getOrderCart ,lodedProductDetails,getInnerTextById,lodedSmartWatch}
