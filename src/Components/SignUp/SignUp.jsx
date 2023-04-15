@@ -54,7 +54,7 @@ const SignUp = () => {
                 {success && <p className='text-green-400 text-center'><small>{success}</small></p>}
                 {error && <p className='text-red-500 text-center'><small>{error}</small></p>}
                 <input type="checkbox" name="" id="" /> Accepts All Termes And Conditions
-                <input type='submit' value={'Sing In'} className='bg-purple-400 w-full py-2 text-white font-semibold text-lg rounded-md' />
+                <input type='submit' value={'Sing Up'} className='bg-purple-400 w-full py-2 text-white font-semibold text-lg rounded-md' />
                 <p>Already have an account? <span className='text-purple-400'><Link to={'/logIn'}>Sign In</Link></span></p>
             </form>
         </div>
