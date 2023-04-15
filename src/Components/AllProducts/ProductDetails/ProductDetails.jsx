@@ -68,10 +68,10 @@ const ProductDetails = () => {
         <div className='container mx-auto mt-32'>
             <div className='grid grid-cols-6  gap-5'>
                 <div className=' col-span-2' >
-                    <img className='w-[400px] h-[450px] object-cover' src={proImg} alt="Product Images" />
+                    <img className='w-[400px] h-[450px] object-cover cursor-zoom-in ' src={proImg} alt="Product Images" />
                     <div className='flex gap-4 mt-12 justify-center w-full'>
                         {
-                            variantImg?.map(vImg => <div className='w-20 h-20 border-2 '>
+                            variantImg?.map(vImg => <div key={vImg.id} className='w-20 h-20 border-2 '>
                                 <img onClick={()=>setProductImg(vImg)} className='w-full h-full object-cover' src={vImg ? vImg : img} alt="Another imgs" />
                             </div>)
                         }
