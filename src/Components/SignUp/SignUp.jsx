@@ -1,62 +1,88 @@
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import React, { useState } from 'react';
-import app from '../../Firebase/Firebase.comfig';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { authentication } from '../../AuthProvider/AuthProvider';
 
 const SignUp = () => {
     const [error, setError] = useState('')
     const [success, setSuccess] = useState('')
-    const auth = getAuth(app)
-
-    const handleSubmit = e => {
+    const [type, setType] = useState('password')
+    const {createUserWithEmail} = useContext(authentication)
+    const handleSingUp = (e) => {
         e.preventDefault()
-        setError('')
-        setSuccess('')
-        const email = e.target.email.value;
-        const password = e.target.password.value;
-        const name = e.target.firstName.value + ' ' + e.target.lastName.value
-        if (!password.length > 6) {
-            setError('Set Password at lest 6 carecters')
-            return
+        const form = e.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log(name,email,password)
+        createUserWithEmail(email,password)
+        .then(()=>{
+            setSuccess('User has created successfuly')
+        })
+        .catch(err=>{
+            setError(err.message)
+        })
+    }
+
+
+    const handleType = () => {
+        if (type === 'text') {
+            setType('password')
         }
-        createUserWithEmailAndPassword(auth, email, password)
-            .then(result => {
-                setSuccess('User has created successfuly')
-            })
-            .catch(error => {
-                setError(error.message)
-            })
-         e.target.reset()   
+        else if (type === 'password') {
+            setType('text')
+        }
     }
     return (
-        <div className='container mx-auto mt-32'>
-            <form onSubmit={handleSubmit} className='w-4/12 p-4 h-auto shadow-md mx-auto mt-12 space-y-4'>
-                <div className='flex justify-between gap-2 items-center w-full pl-2'>
-                    <h2 className='text-lg font-semibold'>First Name :</h2>
-                    <input className='w-3/4 px-4 py-2 bg-gray-400 text-white text-lg font-semibold outline-none rounded placeholder:text-white' autoFocus type="text" placeholder='Enter Your First Name' name="firstName" id="firstName" />
+        <div className="hero min-h-screen bg-base-200">
+            <div className="hero-content flex-col ">
+                <div className="text-center">
+                    <h1 className="text-5xl font-bold">Sign Up Now</h1>
                 </div>
-                <div className='flex justify-between gap-2 items-center w-full pl-2'>
-                    <h2 className='text-lg font-semibold'>Last Name :</h2>
-                    <input className='w-3/4 px-4 py-2 bg-gray-400 text-white text-lg font-semibold outline-none rounded placeholder:text-white' type="text" placeholder='Enter Your Last Name' name="lastName" id="lastName" />
+                <div className="card flex-shrink-0 w-96 max-w-sm shadow-2xl bg-base-100">
+                    <form onSubmit={handleSingUp} className="card-body">
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Name</span>
+                            </label>
+                            <input type="text" required name='name' placeholder="Enter Your Name" className="input input-bordered" />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Email</span>
+                            </label>
+                            <input type="email" required name='email' placeholder="example@gmail.com" className="input input-bordered" />
+                        </div>
+                        <div className="form-control relative">
+                            <label className="label">
+                                <span className="label-text">Password</span>
+                            </label>
+                            <input type={type} required name='password' placeholder="Enter Your Password" className="input input-bordered outline-none" />
+                            <span onClick={handleType} className=' absolute right-2 top-12'>{type === 'password' ? <i class="fa-solid fa-eye"></i> : <i class="fa-solid fa-eye-slash"></i>}</span>
+                        </div>
+                        <div>
+                            {success && <p className='text-green-400 text-center'><small>{success}</small></p>}
+                            {error && <p className='text-red-500 text-center'><small>{error}</small></p>}
+                        </div>
+                        <div className="form-control mt-6">
+                            <button className=" py-2 bg-purple-400 outline-none text-lg text-white rounded-xl">Sign Up</button>
+                        </div>
+                        {/* <div className=' flex justify-center gap-4 items-center'>
+                            <span  title='Sign in with Google' className='text-purple-400 hover:text-purple-600 cursor-pointer text-2xl'>
+                                <i class="fa-brands fa-google-plus-g"></i>
+                            </span>
+                            <span className='text-purple-400 cursor-pointer hover:text-purple-600 text-2xl' title='Sign in with Facebook'>
+                                <i class="fa-brands fa-square-facebook"></i>
+                            </span>
+                            <span className='text-purple-400 cursor-pointer hover:text-purple-600 text-2xl' title='Sign in with Github'>
+                                <i class="fa-brands fa-github"></i>
+                            </span>
+                        </div> */}
+                        <label className="label">
+                            <Link to={'/login'} className="label-text-alt text-purple-400 link link-hover">Already have an account? Sign IN</Link>
+                        </label>
+                    </form>
                 </div>
-                <div className='flex justify-between gap-2 items-center w-full pl-2'>
-                    <h2 className='text-lg font-semibold'>Email :</h2>
-                    <input className='w-3/4 px-4 py-2 bg-gray-400 text-white text-lg font-semibold outline-none rounded placeholder:text-white' type="email" placeholder='Example@gmail.com' name="email" id="email" />
-                </div>
-                <div className='flex justify-between gap-2 items-center w-full pl-2'>
-                    <h2 className='text-lg font-semibold'>Password :</h2>
-                    <input className='w-3/4 px-4 py-2 bg-gray-400 text-white text-lg font-semibold outline-none rounded placeholder:text-white' type="password" placeholder='Enter Your Password' name="password" id="password" />
-                </div>
-                <div className='flex justify-between gap-2 items-center w-full pl-2'>
-                    <h2 className='text-lg font-semibold'>Confrum :</h2>
-                    <input className='w-3/4 px-4 py-2 bg-gray-400 text-white text-lg font-semibold outline-none rounded placeholder:text-white' type="password" placeholder='Re-wright Your Password' name="rePassword" id="rePassword" />
-                </div>
-                {success && <p className='text-green-400 text-center'><small>{success}</small></p>}
-                {error && <p className='text-red-500 text-center'><small>{error}</small></p>}
-                <input type="checkbox" name="" id="" /> Accepts All Termes And Conditions
-                <input type='submit' value={'Sing Up'} className='bg-purple-400 w-full py-2 text-white font-semibold text-lg rounded-md' />
-                <p>Already have an account? <span className='text-purple-400'><Link to={'/logIn'}>Sign In</Link></span></p>
-            </form>
+            </div>
         </div>
     );
 };

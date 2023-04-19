@@ -1,32 +1,40 @@
-import React, { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { GoogleAuthProvider, getAuth, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
+import React, { useContext, useRef, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { getAuth, sendPasswordResetEmail } from 'firebase/auth'
 import app from '../../Firebase/Firebase.comfig';
+import { authentication } from '../../AuthProvider/AuthProvider';
+
+
 const Login = () => {
     const [error, setError] = useState('')
     const [success, setSuccess] = useState('')
     const [type, setType] = useState('password')
     const emailRef = useRef()
     const auth = getAuth(app);
+    const navigate = useNavigate()
+    const location = useLocation()
+    const from =location.state?.from?.pathname || '/'
+    const { logInwithEmail,createUserWithGoogle } = useContext(authentication)
     setTimeout(() => {
         setError('')
         setSuccess('')
     }, 7000)
+
     const handelLogIn = e => {
         e.preventDefault()
         const email = e.target.email.value;
         const password = e.target.password.value
-        signInWithEmailAndPassword(auth, email, password)
+        logInwithEmail(email, password)
             .then(() => {
                 setSuccess('Log In successful')
                 e.target.reset()
+                navigate(from , {replace:true})
             })
             .catch(error => {
                 setError(error.message)
             })
-
-        
     }
+
 
     const forgetPassword = e => {
         const email = emailRef.current.value
@@ -39,10 +47,10 @@ const Login = () => {
             })
     }
     const singInWithGoogle = () => {
-        const googleAuth = new GoogleAuthProvider
-        signInWithPopup(auth, googleAuth)
+        createUserWithGoogle()
             .then(result => {
                 setSuccess('Sign in with Google Is Successfull')
+                navigate(from)
             })
             .catch(error => {
                 setError(error.message)
@@ -75,7 +83,7 @@ const Login = () => {
                                 <span className="label-text">Password</span>
                             </label>
                             <input type={type} required name='password' placeholder="Enter Your Password" className="input input-bordered outline-none" />
-                            <span onClick={handleType} className=' absolute right-2 top-12'>{type==='password' ? <i class="fa-solid fa-eye"></i>:<i class="fa-solid fa-eye-slash"></i>}</span>
+                            <span onClick={handleType} className=' absolute right-2 top-12'>{type === 'password' ? <i class="fa-solid fa-eye"></i> : <i class="fa-solid fa-eye-slash"></i>}</span>
                             <label className="label">
                                 <p onClick={forgetPassword} className="label-text-alt text-purple-400 link link-hover">Forgot password?</p>
                             </label>

@@ -1,4 +1,4 @@
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import Order from './Order/Order';
 import { createContext, useEffect, useState } from 'react';
 import { getOrderCart } from '../../CustomLoder/CustomLoder';
@@ -87,7 +87,7 @@ const Carts = () => {
                             <p>Payable Amount :</p>
                             <p>${payable.toFixed(2)}</p>
                         </div>
-                        <button className=' py-2 text-center bg-purple-400 hover:bg-purple-500 text-white text-lg font-semibold w-full'>Confrome Order</button>
+                        <Link to={'/checkOut'} ><button className=' py-2 text-center bg-purple-400 hover:bg-purple-500 text-white text-lg font-semibold w-full'>Check Out</button></Link>
                     </div>
                 </div>
             </div>
